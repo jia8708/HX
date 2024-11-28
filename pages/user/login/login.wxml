@@ -1,0 +1,13 @@
+<view class="box">
+  <image src="/images/xx.png"></image>
+</view>
+<view class="text">
+<!-- <text>
+因为需要为各位同学购买保险，所以请各位同学同意授权。我们将采集你的头像，微信号等信息用于身份认证。
+</text> -->
+</view>
+<view class="footer">
+  <image src="/images/login.png"></image>
+  <!-- <button class="sumbit" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"></button> -->
+  <input type="nickname" class="weui-input" placeholder=""/>
+</view>

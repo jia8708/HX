@@ -1,0 +1,135 @@
+<wxs src="../../date.wxs" module="newdate" />
+<view class="box">
+  <view>
+    <view class="row-register">
+      <view class="title">队长学号:</view>
+      <view class="input">{{teaminfo.TeamLeaderStuNo}}</view>
+    </view>
+
+    <view class="row-register">
+      <view class="title ">队伍名称:</view>
+      <view class="input teamtitle">{{teaminfo.TeamName}}</view>
+    </view>
+
+    <view class="row-register">
+      <view class="title">到访省份:</view>
+      <view class="input">{{teaminfo.province}}</view>
+    </view>
+    <view class="row-register">
+      <view class="title ">到访学校:</view>
+      <view class="input teamtitle">{{teaminfo.HighSchool}}</view>
+    </view>
+    <view class="row-register" wx:if="{{!showpicker}}">
+      <view class="title">到访时间:</view>
+      <view class="input">{{newdate.exchange(teaminfo.StartDate)}}</view>
+
+      <view class="datetext" bindtap="changedate" wx:if="{{captain}}">
+        <text>修改日期</text>
+      </view>
+
+
+    </view>
+    <view class="row-register" wx:else>
+      <view class="title">到访时间 :</view>
+      <picker mode="date" value="{{date}}" start="2020-01-01" end="2020-03-01" bindchange="bindDateChange">
+        <view class="picker">
+          {{date}}
+          <image class="iocin" src="/images/enter.png"></image>
+        </view>
+      </picker>
+
+    </view>
+
+  </view>
+
+  <view class="head">
+    <image src="/images/title2.png"></image>
+    <text>队伍成员表</text>
+  </view>
+
+  <view class="info">
+    <view class="leader">
+      <view class="leaderL">
+        <image src="/images/captain.png"></image>
+      </view>
+      <view class="leaderR">
+        <view class="rowinfo">
+          队长姓名:
+          <text>{{teaminfo.TeamLeaderName}}</text>
+        </view>
+        <view class="rowinfo">
+          学号:
+          <text>{{teaminfo.TeamLeaderStuNo}}</text>
+        </view>
+        <view class="rowinfo">
+          学院:
+          <text>{{teaminfo.LeaderCollege}} </text>
+        </view>
+        <view class="rowinfo">
+          专业:
+          <text>{{teaminfo.LeaderMajor}}</text>
+        </view>
+        <view class="rowinfo" wx:if="{{myteam||captain}}">
+          电话:
+          <text>{{teaminfo.LeaderMobilePhone}}</text>
+        </view>
+
+      </view>
+    </view>
+
+    <view class="member" wx:for="{{teaminfo.teamMemberData}}">
+      <image class="memberleft" src="/images/left.png"></image>
+      <view class="memberinfo">
+        <view class="rowinfo">
+          姓名:
+          <text>{{teaminfo.teamMemberData[index].MemberName}}</text>
+          <image class="del" wx:if="{{mystuNo==teaminfo.teamMemberData[index].MemberStuNo||captain}}" src="/images/del2.png" bindtap="del" data-id="{{teaminfo.teamMemberData[index].MemberStuNo}}"></image>
+        </view>
+        <view class="rowinfo">
+          学号:
+          <view class="texttwo">{{teaminfo.teamMemberData[index].MemberStuNo}}</view>
+        </view>
+        <view class="rowinfo">
+          学院:
+          <view class="texttwo">{{teaminfo.teamMemberData[index]. MemberCollege}}
+          </view>
+        </view>
+        <view class="rowinfo">
+          专业:
+          <view class="texttwo">{{teaminfo.teamMemberData[index]. Membermajor}}
+          </view>
+        </view>
+        <view class="rowinfo">
+          毕业中学:
+          <view class="text">{{teaminfo.teamMemberData[index]. MemberSchool}}
+          </view>
+        </view>
+        <view class="rowinfo" wx:if="{{myteam||captain}}">
+          联系电话:
+          <view class="text">{{teaminfo.teamMemberData[index]. stuTelNo}}
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <view class="member">
+
+    <modal class="modal" hidden="{{modalHidden}}" bindconfirm="bindconfirm" bindcancel="bindcancel">
+      <view>
+        <input placeholder="学号" bindinput="addmember" data-model="num" maxlength="10" value='{{inputValue}}'> </input>
+      </view>
+    </modal>
+
+    <view class="add" bindtap="modalTap" wx:if="{{captain}}">
+      <image src="/images/addmember.png"></image>
+    </view>
+
+  </view>
+
+  <view class="delteam" wx:if="{{captain}}" bindtap="delteam">
+    <view class="deltext">解散队伍</view>
+    <image src="/images/red.png"></image>
+  </view>
+
+</view>

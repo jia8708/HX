@@ -1,0 +1,9 @@
+<view class="li-two" bindtap="gocreate">
+    新建队伍
+</view>
+<view class="li-two" bindtap="join">
+    加入队伍
+</view>
+<!-- <view class="li-two" bindtap="goregister">
+    填写报名信息
+</view> -->

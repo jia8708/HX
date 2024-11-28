@@ -1,0 +1,28 @@
+.box{
+margin: 406rpx 200rpx 0rpx 200rpx;
+}
+.box image{
+width: 390rpx;
+height: 280rpx;
+}
+.sumbit{
+  /* background: #ffffff; */
+}
+.text{
+margin: 20rpx 80rpx;
+text-align: center;
+font-size: 27rpx;
+}
+.footer {
+margin: 90rpx 230rpx;
+}
+.footer button{
+  opacity: 0.2;
+  margin-top: -80rpx;
+  width: 288rpx;
+  background: #ffffff;
+}
+.footer image{
+width: 288rpx;
+height: 60rpx;
+}

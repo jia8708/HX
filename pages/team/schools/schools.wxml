@@ -1,0 +1,15 @@
+<view class="search">
+  <view class="box">
+    <image src="/images/finder.png"></image>
+    <input class="input" placeholder="请输入学校名称关键字" value="{{inputvalue}}"bindinput="bindinput"placeholder-style="font-size:24rpx;color:#cccccc"/>
+  </view>
+</view>
+
+
+
+<scroll-view id="scroll" scroll-y="true" bindscrolltolower="bindscrolltolower">
+<block wx:for="{{shownames}}">
+<view class="school" data-index="{{index}}"bindtap="choose">{{shownames[index].highSchool}}</view>
+</block>
+
+</scroll-view>

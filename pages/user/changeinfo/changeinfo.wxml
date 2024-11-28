@@ -1,0 +1,31 @@
+<view class="box">
+  <form bindsubmit="formSubmit">
+    <view class="row-register">
+      <view class="title">姓名: </view>
+      <input placeholder="请输入输入姓名" bindinput="bindinput" value="{{myinfo.stuName}}" name="studentname"
+        adjust-position="true" data-model="name" type="text"></input>
+    </view>
+    <view class="row-register">
+      <view class="title">学号:</view>
+      <input placeholder="请输入学号" bindinput="bindinput" name="studentID" value="{{myinfo.StuNo}}" adjust-position="true"
+        data-model="schoolID" maxlength="10"></input>
+    </view>
+    <view class="row-register">
+      <view class="title">身份证号:</view>
+      <input placeholder="请输入身份证号" bindinput="bindinput" value="{{myinfo.stuID}}" name="IDcard" data-model="IDcard"
+        adjust-position="true" maxlength="18"></input>
+    </view>
+    <view class="row-register">
+      <view class="title">手机号码:</view>
+      <input placeholder="请输入手机号码" bindinput="bindinput" value="{{myinfo.stuTelNo}}" name="phone" data-model="phone"
+        type="number" adjust-position="true" maxlength="11"></input>
+      <!-- <image src="/images/send.png" class="send"></image> -->
+    </view>
+    <view class="buttonrow">
+      <view class="submit" bindtap="submit">
+        <view class="del">修改注册</view>
+        <image src="/images/submit.png"></image>
+      </view>
+    </view>
+  </form>
+</view>

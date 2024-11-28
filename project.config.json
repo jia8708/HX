@@ -1,0 +1,132 @@
+{
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "setting": {
+    "ignoreDevUnusedFiles": false,
+    "ignoreUploadUnusedFiles": false,
+    "urlCheck": true,
+    "es6": true,
+    "enhance": false,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "bundle": false,
+    "useIsolateContext": true,
+    "useCompilerModule": false,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "condition": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "3.6.3",
+  "appid": "wx18a9d306b74c95a4",
+  "projectname": "%E5%AF%92%E5%AE%A3",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/user/user",
+          "pathName": "pages/user/user",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/team/none/none",
+          "pathName": "pages/team/none/none",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/user/register/register",
+          "pathName": "pages/user/register/register",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/team/new/new",
+          "pathName": "pages/team/new/new",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/team/join/join",
+          "pathName": "pages/team/join/join",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/universe/share/share",
+          "pathName": "pages/universe/share/share",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/team/teamInfo/teamInfo",
+          "pathName": "pages/team/teamInfo/teamInfo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/team/team",
+          "pathName": "pages/team/team",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/team/create/create",
+          "pathName": "pages/team/create/create",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/team/schools/schools",
+          "pathName": "pages/team/schools/schools",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/universe/shareinfo/shareinfo",
+          "pathName": "pages/universe/shareinfo/shareinfo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  },
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
+}

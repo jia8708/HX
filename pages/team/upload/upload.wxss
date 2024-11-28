@@ -1,0 +1,127 @@
+.custom-tabs {
+  margin-bottom: 32rpx;
+}
+
+.firstpage{
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper{
+  margin: 11px;
+}
+.secview{
+  height:60vh;
+  overflow: auto;
+}
+
+.uploadbutton {
+  margin-top: 30rpx;
+  text-align: center; 
+}
+
+.text{
+  display: inline-block;
+  padding: 15rpx 15rpx 5rpx 28rpx;
+  font-size: 27rpx;
+}
+
+.text::before {
+  content: "";
+  display: inline-block;
+  margin-right: 10rpx;
+  width: 9rpx;
+  height: 22rpx;
+  background-color: #0061b2;
+}
+
+.tip{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding-top: 20rpx;
+  color: gray;
+}
+
+.fileicon{
+  width: 130rpx;
+  height: 130rpx;
+  margin-left: 35rpx;
+}
+
+.filetext{
+  padding-top:5rpx ;
+  margin-left: 45rpx;
+}
+
+.secwrapper{
+  margin: 20rpx;
+  display: flex;
+  align-items: center;
+}
+.secfiletext{
+  margin-left: 30rpx;
+}
+.upbutton {
+  margin-left: 240rpx;
+}
+.hidden-view {
+  display: none;
+}
+.firstupload{
+  margin: 20rpx;
+}
+.tr {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.col {
+  position: relative;
+  width: 33.33%;
+  box-sizing: border-box;
+  margin-bottom: 25rpx;
+  display: flex;
+  justify-content: center;
+}
+.imgDelButton {
+  position: absolute;
+  top: 0;
+  left: calc((33.3vw - 90px) / 2 + 63px);
+  width: 23px;
+  height: 23px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-top-right-radius: 12rpx;
+  border-bottom-left-radius: 12rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.imgDelButton::before {
+  content: "×";
+  color: white;
+  font-size: 36rpx;
+  margin-bottom: 7rpx;
+}
+.delicon{
+  width: 35rpx;
+  height: 35rpx;
+  margin-top: 10px;
+  margin-left: 400rpx;
+}
+.imagetitle{
+  display: flex;
+  align-items: center;
+}
+.loading-container-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
+

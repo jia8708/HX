@@ -1,0 +1,68 @@
+page{background-color:#fcfcfc;}
+
+
+.head .top{
+width: 100vw;
+height: 180rpx;
+}
+.rectangle{
+position: relative;
+border-radius: 64rpx;
+margin-top: -60rpx;
+width: 100%;
+height: 240rpx;
+background: #fcfcfc;
+}
+.userimage{
+  width: 140rpx;
+  height: 70rpx;
+  margin: 0 auto;
+
+}
+.userimage image{
+position: absolute;
+top: -70rpx;
+width: 140rpx;
+border-radius: 50%;
+height: 140rpx;
+}
+.name{
+margin: 50rpx auto 50rpx auto;
+width: auto;
+height: 70rpx;
+font-size: 36rpx;
+text-align: center;
+white-space: nowrap;  
+}
+/* .name .text{
+  white-space: nowrap;  
+ /* text-overflow:ellipsis; 
+ overflow:hidden; 
+} */
+.userrow{
+  width: 690rpx;
+  height: 90rpx;
+  margin:30rpx 30rpx;
+  background: white;
+}
+.userrow:active{
+   background: #f6f6f6;
+}
+.userrow text{
+  float: left;
+  font-size: 28rpx;
+  height: 30rpx;
+  line-height: 92rpx;
+}
+.l-ico{
+float: left;
+padding: 29rpx 30rpx;
+width: 35rpx;
+height: 35rpx;
+}
+ .iocin{
+   float: right;
+  width: 14rpx;
+  height: 28rpx;
+  padding:30rpx;
+}

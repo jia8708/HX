@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "base64-arraybuffer": "^1.0.2",
+    "tdesign-miniprogram": "^1.7.0"
+  }
+}

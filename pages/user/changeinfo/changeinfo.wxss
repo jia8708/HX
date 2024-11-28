@@ -1,0 +1,92 @@
+
+.input{
+padding: 35rpx 0rpx 30rpx 10rpx;
+font-size: 32rpx;
+color: #343434;
+}
+.row-register{
+  height: 100rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+display: flex;
+flex-direction: row;
+flex-wrap: nowrap
+}
+.row-register .title{
+padding: 36rpx 0rpx 36rpx 30rpx;
+font-size: 32rpx;
+width: auto;
+color: #6b6b6b;
+ white-space:nowrap;
+}
+.row-register input{
+
+padding: 35rpx 0rpx 30rpx 10rpx;
+font-size: 32rpx;
+color: #343434;
+}
+
+
+.row-register picker{
+width: 500rpx;
+padding: 36rpx 0rpx 36rpx 10rpx;
+font-size: 30rpx;
+color: #cccccc;
+}
+.row-register .iocin{
+   float: right;
+  width: 14rpx;
+  height: 28rpx; 
+}
+.buttonrow {
+  position: relative;
+  margin:68rpx auto ;
+  width: 690rpx;
+  height: 80rpx;
+  border-radius: 39rpx; 
+}
+
+.submit button{
+font-size: 32rpx;
+width: 689rpx;
+height: 84rpx;
+border-radius: 39rpx;
+  background: #6175ff;
+color: #ffffff;
+}
+.submit button:active{
+   background: #8589ff;
+}
+.send{
+  width: 156rpx;
+  height: 44rpx;
+  margin-top: 28rpx;
+}
+.row-register .error{
+  color: red;
+}
+.submit .del{
+  left: 38vw;
+  position: absolute;
+line-height: 75rpx;
+color: white;
+font-size: 32rpx;
+height: 68rpx;
+text-align: center;
+}
+.submit .text{
+position: absolute;
+left: 42vw;
+line-height: 75rpx;
+color: white;
+font-size: 32rpx;
+height: 68rpx;
+text-align: center;
+}
+
+.submit image{
+width: 690rpx;
+height: 80rpx;
+}
+.submit:active{
+  opacity: 0.9
+}

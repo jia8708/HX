@@ -1,0 +1,15 @@
+
+function splits(m){
+  var newdate=m.split("T")
+    return newdate[0]
+}
+
+function exchange(m) {
+  var newdate = m.split(" ")
+  return newdate[0]
+}
+
+module.exports={
+  splits: splits,
+  exchange: exchange
+};

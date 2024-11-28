@@ -1,0 +1,45 @@
+<view class="box">
+  <form>
+    <view class="row-register">
+      <view class="title">队长学号:</view>
+      <input placeholder="学号" bindinput="bindinput" maxlength="10"data-model="num" value="{{TeamLeaderStuNo}}"> </input>
+    </view>
+
+    <view class="row-register">
+      <view class="title">队伍名称:</view>
+      <input placeholder="队伍名称" bindinput="bindinput" data-model="name"></input>
+    </view>
+    <view class="row-register">
+      <view class="title">到访省份 :</view>
+      <picker bindchange="bindPickerChange" moder="selector"range="{{regions}}" value="{{index}}">
+        <view class="picker">
+          <image class="iocin" src="/images/enter.png"></image>
+          {{regions[index]}}
+        </view>
+      </picker>
+    </view>
+    <view class="row-register">
+      <view class="title">到访学校 :</view>
+      <view class="oldpicker " bindtap="enterschools">
+        {{schoolname}}
+        <image class="iocin" src="/images/enter.png"></image>
+      </view>
+    </view>
+    <view class="row-register">
+      <view class="title">到访日期 :</view>
+      <picker mode="date" value="{{date}}" start="2020-01-01" end="2020-03-01" bindchange="bindDateChange">
+        <view class="picker">
+         {{date}}
+          <image class="iocin" src="/images/enter.png"></image>
+        </view>
+      </picker>
+
+    </view>
+    <view class="buttonrow">
+    <view class="submit" bindtap="sumbit">
+      <view class="del">创建团队</view>
+      <image src="/images/submit.png"></image>
+    </view>
+    </view>
+  </form>
+</view>

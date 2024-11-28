@@ -1,0 +1,40 @@
+<view class="head">
+  <image class="top" src="/images/usertop.png"></image>
+</view>
+
+<view class="rectangle">
+  <view class="userimage">
+    <image wx:if="{{userInfo}}" bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <image wx:else src="/images/head.png"></image>
+  </view>
+  <view class="name">{{userInfo.nickName}}</view>
+</view>
+<view class="userrow" bindtap="goRegister">
+  <view class="box">
+    <image class="l-ico" src="/images/info.png"></image>
+    <text>注册信息</text>
+    <image class="iocin" src="/images/enter.png"></image>
+  </view>
+</view>
+<view class="userrow" bindtap="goTeam">
+  <view class="box">
+    <image class="l-ico" src="/images/userteam.png"></image>
+    <text>我的团队</text>
+    <image class="iocin" src="/images/enter.png"></image>
+  </view>
+</view>
+<view class="userrow" bindtap="goUpload">
+  <view class="box">
+    <image class="l-ico" src="/images/uploadData.png"></image>
+    <text>活动材料上报</text>
+    <image class="iocin" src="/images/enter.png"></image>
+  </view>
+</view>
+
+<view class="userrow" bindtap="gologin"wx:if="{{!userInfo}}">
+  <view class="box">
+    <image class="l-ico" src="/images/info.png"></image>
+    <text>授权登录</text>
+    <image class="iocin" src="/images/enter.png"></image>
+  </view>
+</view>

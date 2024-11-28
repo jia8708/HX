@@ -1,0 +1,69 @@
+<view class="box">
+  <form bindsubmit="formSubmit">
+    <block wx:if="{{!myinfo}}">
+      <view class="row-register">
+        <view class="title">姓名: </view>
+        <input placeholder="请输入姓名" bindinput="bindinput" name="studentname" adjust-position="true" data-model="name" type="text"></input>
+      </view>
+      <view class="row-register">
+        <view class="title">学号:</view>
+        <input placeholder="请输入学号" bindinput="bindinput" name="studentID" adjust-position="true" data-model="schoolID" maxlength="10"></input>
+      </view>
+      <view class="row-register">
+        <view class="title">身份证号:</view>
+        <input placeholder="请输入身份证号" bindinput="bindinput" name="IDcard" data-model="IDcard" adjust-position="true" maxlength="18"></input>
+      </view>
+      <view class="row-register">
+        <view class="title">手机号码:</view>
+        <input placeholder="请输入手机号码" bindinput="bindinput" name="phone" data-model="phone" type="number" adjust-position="true" maxlength="11"></input>
+        <!-- <image src="/images/send.png" class="send"></image> -->
+      </view>
+    </block>
+    <block wx:else>
+      <view class="row-register">
+        <view class="title">姓名: </view>
+        <view class="input">{{myinfo.stuName}}</view>
+      </view>
+      <view class="row-register">
+        <view class="title">学号:</view>
+        <view class="input">{{myinfo.StuNo}}</view>
+      </view>
+      <view class="row-register">
+        <view class="title">身份证号:</view>
+        <view class="input">{{myinfo.stuID}}</view>
+      </view>
+      <view class="row-register">
+        <view class="title">手机号码:</view>
+        <view class="input">{{myinfo.stuTelNo}}</view>
+      </view>
+    </block>
+    <!-- <view class="row-register">
+      <view class="title">验证码:</view>
+      <input placeholder="输入框带标签"></input>
+    </view> -->
+    <block wx:if="{{myinfo}}">
+      <view class="buttonrow">
+        <view class="submit" bindtap="delinfo">
+          <view class="del">删除信息</view>
+          <image src="/images/red.png"></image>
+        </view>
+        <view class="submit" bindtap="change">
+          <view class="del">修改信息</view>
+          <image src="/images/submit.png"></image>
+        </view>
+        </view>
+    </block>
+
+
+    <block wx:else>
+      <view class="buttonrow">
+        <view class="submit" formType="submit" bindtap="submit">
+              <view class="del">提交信息</view>
+          <image src="/images/submit.png"></image>
+        </view>
+      </view>
+    </block>
+
+  </form>
+
+  </view>

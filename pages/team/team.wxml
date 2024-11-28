@@ -1,0 +1,36 @@
+<wxs src="../date.wxs" module="newdate"/>
+<view class="search">
+  <view class="box">
+    <image src="/images/finder.png"></image>
+    <input bindinput="bindinput" class="input" value="{{inputvalue}}"placeholder="请输入学校名称"placeholder-style="font-size:24rpx;color:#cccccc"/>
+  </view>
+</view>
+
+<view class="head">
+  <image src="/images/title2.png"></image>
+  <text>团队推荐</text>
+</view>
+
+<scroll-view bindscrolltolower="bindscrolltolower" scroll-y="true" id="scroll">
+<view class="rowteam" wx:for="{{showinfo}}" wx:key="index">
+  <image class="defimg" src="/images/defimg.png"></image>
+  <view class="right">
+    <view class="nametime" bindtap="enterinfo" data-info="{{showinfo[index]}}">
+      <view class="name" >{{showinfo[index].HighSchool}}</view>
+      <text class="time">{{newdate.splits(showinfo[index].StartDate)}}</text>
+    </view>
+    <view class="location">
+      <image src="/images/shareteam.png"></image>
+      <text>第{{showinfo[index].TeamID}}小队</text>
+
+      <view class="button" bindtap="add"data-teamID="{{showinfo[index].TeamLeaderStuNo}}">
+        <text>加入队伍</text>
+        <image src="/images/button.png"></image>
+      </view>
+    </view>
+  </view>
+</view>
+</scroll-view>
+<view class="footbutton" bindtap="entercreate">
+<image src="/images/entershare.png"></image>
+</view>
