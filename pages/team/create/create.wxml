@@ -2,7 +2,7 @@
   <form>
     <view class="row-register">
       <view class="title">队长学号:</view>
-      <input placeholder="学号" bindinput="bindinput" maxlength="10"data-model="num" value="{{TeamLeaderStuNo}}"> </input>
+      <input placeholder="学号" bindinput="bindinput" maxlength="14"data-model="num" value="{{TeamLeaderStuNo}}"> </input>
     </view>
 
     <view class="row-register">

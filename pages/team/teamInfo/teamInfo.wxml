@@ -117,7 +117,7 @@
 
     <modal class="modal" hidden="{{modalHidden}}" bindconfirm="bindconfirm" bindcancel="bindcancel">
       <view>
-        <input placeholder="学号" bindinput="addmember" data-model="num" maxlength="10" value='{{inputValue}}'> </input>
+        <input placeholder="学号" bindinput="addmember" data-model="num" maxlength="14" value='{{inputValue}}'> </input>
       </view>
     </modal>
 

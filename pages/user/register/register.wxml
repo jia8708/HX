@@ -7,7 +7,7 @@
       </view>
       <view class="row-register">
         <view class="title">学号:</view>
-        <input placeholder="请输入学号" bindinput="bindinput" name="studentID" adjust-position="true" data-model="schoolID" maxlength="10"></input>
+        <input placeholder="请输入学号" bindinput="bindinput" name="studentID" adjust-position="true" data-model="schoolID" maxlength="14"></input>
       </view>
       <view class="row-register">
         <view class="title">身份证号:</view>
