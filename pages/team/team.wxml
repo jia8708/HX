@@ -23,7 +23,7 @@
       <image src="/images/shareteam.png"></image>
       <text>第{{showinfo[index].TeamID}}小队</text>
 
-      <view class="button" bindtap="add"data-teamID="{{showinfo[index].TeamLeaderStuNo}}">
+      <view class="button" bindtap="add" data-teamID="{{showinfo[index].TeamID}}" data-TeamLeaderStuNo="{{showinfo[index].TeamLeaderStuNo}}">
         <text>加入队伍</text>
         <image src="/images/button.png"></image>
       </view>

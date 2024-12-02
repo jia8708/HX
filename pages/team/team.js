@@ -215,12 +215,11 @@ Page({
                 console.log(res)
                 const url = 'hxapi/api/Team/TeamMemberAdd'
                 const query = {
-                  LeaderStuNo: '' ,
-                  teamMemberStuNo: app.data,
+                  LeaderStuNo: e.currentTarget.dataset.teamleaderstuno ,
+                  teamMemberStuNo: res.data,
                   teamID: e.currentTarget.dataset.teamid
                 }
                 util.ReqSend(url, query).then((res) => {
-                  console.log(res)
                   const data = JSON.parse(res.data)
                   console.log(data)
                   if (data.status == "1" && data.errorCode == "000") {
