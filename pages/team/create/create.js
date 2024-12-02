@@ -10,6 +10,8 @@ Page({
     TeamLeaderStuNo:'',
     TeamName:'',
     date: '请选择到访日期',
+    startDate:'',
+    endDate:'',
     // time: '12:01',
     regions: ['请选择省份','重庆', '四川', '贵州', '云南', '海南', '广东', '福建', '山东', '河南', '江西', '河北', '山西', '吉林', '辽宁','黑龙江','陕西','甘肃','青海','浙江','台湾','湖北','湖南','江苏','安徽','北京','上海','天津','内蒙古','新疆','广西','宁夏','西藏'],
     index:0,
@@ -118,6 +120,15 @@ onLoad: function(options) {
           TeamLeaderStuNo: res.data,
         })
       }
+    })
+    const now = new Date();
+    const year = now.getFullYear(); 
+    const month = now.getMonth() + 1; 
+    const day = now.getDate(); 
+    console.log(`当前日期：${year}-${month}-${day}`);
+    this.setData({
+      startDate:`${year}-${month}-${day}`,
+      endDate:`${year+1}-03-01`
     })
 },
 

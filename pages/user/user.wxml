@@ -7,7 +7,7 @@
     <image wx:if="{{userInfo}}" bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
     <image wx:else src="/images/head.png"></image>
   </view>
-  <view class="name">{{userInfo.nickName}}</view>
+  <view class="name">{{stuName?stuName:userInfo.nickName}}</view>
 </view>
 <view class="userrow" bindtap="goRegister">
   <view class="box">

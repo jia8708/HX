@@ -27,7 +27,7 @@
     </view>
     <view class="row-register">
       <view class="title">到访日期 :</view>
-      <picker mode="date" value="{{date}}" start="2020-01-01" end="2020-03-01" bindchange="bindDateChange">
+      <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange">
         <view class="picker">
          {{date}}
           <image class="iocin" src="/images/enter.png"></image>

@@ -1,15 +1,27 @@
 <t-tabs animation="{{ { duration: 0.6 } }}" defaultValue="{{0}}" t-class="custom-tabs" t-class-content="custom-panel" bind:click="onTabsClick">
   <t-tab-panel label="上传文件" value="0" class="firstpage">
-    <view capture-catch:touchstart="choosefile" class="firstview">
+    <view>
+      <view class="text">请上传《告学生家长通知书》家长签字版照片</view>
+      <view class="firstupload">
+        <t-upload media-type="{{['video','image']}}" files="{{file1}}" gridConfig="{{gridConfig}}" config="{{config}}" bind:success="handleSuccess" bind:remove="handleRemove" data-type="1"/>
+      </view>
+    </view>
+    <view>
+      <view class="text">请上传购买保险支付记录截图</view>
+      <view class="firstupload">
+        <t-upload media-type="{{['video','image']}}" files="{{file2}}" gridConfig="{{gridConfig}}" config="{{config}}" bind:success="handleSuccess" bind:remove="handleRemove" data-type="2"/>
+      </view>
+    </view>
+    <view capture-catch:touchstart="choosefile">
       <view class="text">请上传活动总结报告</view>
       <view class="wrapper">
-        <block wx:if="{{docFiles.length === 0}}">
+        <block wx:if="{{file3.length === 0}}">
           <t-upload />
         </block>
         <block wx:else>
           <image src="/images/fileimage.png" class="fileicon"></image>
           <view class="filetext">
-            {{teamID? '第'+teamID+'组总结报告' : '总结报告'}}
+            总结报告
           </view>
         </block>
       </view>
@@ -17,9 +29,10 @@
     <view class="secview">
       <view class="text">请上传活动图片或视频</view>
       <view class="firstupload">
-        <t-upload media-type="{{['video','image']}}" files="{{imageFiles}}" gridConfig="{{gridConfig}}" config="{{config}}" bind:success="handleSuccess" bind:remove="handleRemove" bind:click="handleClick" />
+        <t-upload media-type="{{['video','image']}}" files="{{file4}}" gridConfig="{{gridConfig}}" config="{{config}}" bind:success="handleSuccess" bind:remove="handleRemove"  data-type="4"/>
       </view>
     </view>
+    
     <view class="uploadbutton">
       <t-button theme="light" size="large" bindtap="handleUpload">提交</t-button>
     </view>
@@ -31,28 +44,14 @@
       暂无上传文件
     </view>
     <view wx:else>
-      <view wx:if="{{fileitem.length>0}}">
-        <view class="text">活动总结文档</view>
-        <view class="secwrapper">
-          <view>
-            <image src="/images/fileimage.png" class="fileicon"></image>
-          </view>
-          <view class="secfiletext">
-            <text>{{teamID? '第'+teamID+'组总结报告' : '总结报告'}}</text>
-          </view>
-          <view class="upbutton">
-            <t-button size="small" variant="text" data-type="file" bindtap="delFunc">删除</t-button>
-          </view>
-        </view>
-      </view>
-      <view wx:if="{{imageitem.length>0}}">
+      <view wx:if="{{item1.length>0}}">
         <view class="imagetitle">
-          <view class="text">活动图片和视频</view>
-          <view wx:if="{{!showdel}}">
-            <image src="/images/delicon.png" class="delicon" bind:tap="showDel"></image>
+          <view class="text">《告学生家长通知书》家长签字版照片</view>
+          <view wx:if="{{!showdel1}}">
+            <image src="/images/delicon.png" class="delicon" bind:tap="showDel1"></image>
           </view>
           <view wx:else>
-            <image src="/images/cancel.png" class="delicon" bind:tap="showDel"></image>
+            <image src="/images/cancel.png" class="delicon" bind:tap="showDel1"></image>
           </view>
         </view>
         <view class="loading-container-flex" wx:if="{{loading}}">
@@ -60,9 +59,67 @@
         </view>
         <view class="wrapper">
           <view class="tr">
-            <view wx:for="{{imagesrc}}" wx:key="{{item.name}}" class="col" wx:for-index="index">
+            <view wx:for="{{imagesrc1}}" wx:key="{{item.name}}" class="col" wx:for-index="index">
               <t-image src="{{item.url}}" width="90" height="90" shape="round" />
-              <view wx:if="{{showdel}}" class="imgDelButton" bindtap="delFunc" data-index="{{index}}" data-type="image"></view>
+              <view wx:if="{{showdel1}}" class="imgDelButton" bindtap="delFunc" data-index="{{index}}" data-type="1"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{item2.length>0}}">
+        <view class="imagetitle">
+          <view class="text">购买保险支付记录截图</view>
+          <view wx:if="{{!showdel2}}">
+            <image src="/images/delicon.png" class="delicon" bind:tap="showDel2"></image>
+          </view>
+          <view wx:else>
+            <image src="/images/cancel.png" class="delicon" bind:tap="showDel2"></image>
+          </view>
+        </view>
+        <view class="loading-container-flex" wx:if="{{loading}}">
+          <t-loading theme="spinner" size="40rpx" />
+        </view>
+        <view class="wrapper">
+          <view class="tr">
+            <view wx:for="{{imagesrc2}}" wx:key="{{item.name}}" class="col" wx:for-index="index">
+              <t-image src="{{item.url}}" width="90" height="90" shape="round" />
+              <view wx:if="{{showdel2}}" class="imgDelButton" bindtap="delFunc" data-index="{{index}}" data-type="2"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{item3.length>0}}">
+        <view class="text">活动总结文档</view>
+        <view class="secwrapper">
+          <view>
+            <image src="/images/fileimage.png" class="fileicon"></image>
+          </view>
+          <view class="secfiletext">
+            <text>总结报告</text>
+          </view>
+          <view>
+            <image src="/images/delicon.png" class="upbutton" data-type="3" bindtap="delFunc"></image>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{item4.length>0}}">
+        <view class="imagetitle">
+          <view class="text">活动图片和视频</view>
+          <view wx:if="{{!showdel4}}">
+            <image src="/images/delicon.png" class="delicon" bind:tap="showDel4"></image>
+          </view>
+          <view wx:else>
+            <image src="/images/cancel.png" class="delicon" bind:tap="showDel4"></image>
+          </view>
+        </view>
+        <view class="loading-container-flex" wx:if="{{loading}}">
+          <t-loading theme="spinner" size="40rpx" />
+        </view>
+        <view class="wrapper">
+          <view class="tr">
+            <view wx:for="{{imagesrc4}}" wx:key="{{item.name}}" class="col" wx:for-index="index">
+              <t-image src="{{item.url}}" width="90" height="90" shape="round" />
+              <view wx:if="{{showdel4}}" class="imgDelButton" bindtap="delFunc" data-index="{{index}}" data-type="4"></view>
             </view>
           </view>
         </view>

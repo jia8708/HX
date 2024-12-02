@@ -17,6 +17,8 @@ Page({
     myteam:'',
     showpicker:false,
     date: '请重新选择到访日期',
+    startDate:'',
+    endDate:''
   },
     //弹出添加成员
     modalTap: function(e) {
@@ -387,6 +389,15 @@ Page({
     wx.stopPullDownRefresh()
     wx.showLoading({
       title: "信息加载中"
+    })
+    const now = new Date();
+    const year = now.getFullYear(); 
+    const month = now.getMonth() + 1; 
+    const day = now.getDate(); 
+    console.log(`当前日期：${year}-${month}-${day}`);
+    this.setData({
+      startDate:`${year}-${month}-${day}`,
+      endDate:`${year+1}-03-01`
     })
     //从团队主页面转入的参数
     console.log(options)

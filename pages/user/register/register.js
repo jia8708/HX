@@ -60,7 +60,6 @@ Page({
                     key: 'stuNo',
                     data: ''
                   })
-
                 //存姓名          
                 wx.setStorage({
                  key: 'stuName',

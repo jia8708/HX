@@ -9,7 +9,8 @@ Page({
   data: {
     userInfo: null,
     myteam: null,
-    myinfo: null
+    myinfo: null,
+    stuName:null
   },
   goRegister() {
     if(app.globalData.userInfo){
@@ -107,9 +108,46 @@ Page({
  
   },
   goUpload(){
-    wx.navigateTo({
-      url: '/pages/team/upload/upload',
-    })
+    if(!app.globalData.userInfo){
+      wx.showModal({
+        title: '尚未授权',
+        content: '请先授权绑定微信信息',
+        confirmText: '立即授权',
+        confirmColor: '#7b85fe',
+        cancelText: '拒绝授权',
+        success: (res) => {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/user/login/login',
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }else if (!app.globalData.stuNo) {
+      wx.showModal({
+        title: '尚未报名',
+        content: '请先前往我的页面报名绑定身份信息',
+        confirmText: '立即报名',
+        confirmColor: '#7b85fe',
+        cancelText: '暂不报名',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/user/register/register',
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }else{
+      wx.navigateTo({
+        url: '/pages/team/upload/upload',
+      })
+    }
+    
   },
 
 
@@ -152,6 +190,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    wx.getStorage({
+      key: 'stuName',
+      success: (res) => {
+        console.log("用户名:",res.data);
+        this.setData({
+          stuName:res.data,
+        })
+      }
+    })
     this.setData({
       userInfo:app.globalData.userInfo
     })

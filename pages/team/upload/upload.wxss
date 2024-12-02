@@ -13,7 +13,7 @@
   margin: 11px;
 }
 .secview{
-  height:60vh;
+  height:25vh;
   overflow: auto;
 }
 
@@ -60,12 +60,19 @@
   margin: 20rpx;
   display: flex;
   align-items: center;
+  position: relative;
 }
 .secfiletext{
   margin-left: 30rpx;
 }
 .upbutton {
-  margin-left: 240rpx;
+  width: 35rpx;
+  height: 35rpx;
+  margin-right: 20rpx;
+  margin-top: 55rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .hidden-view {
   display: none;
@@ -111,12 +118,15 @@
 .delicon{
   width: 35rpx;
   height: 35rpx;
-  margin-top: 10px;
-  margin-left: 400rpx;
+  margin-right: 40rpx;
+  position: absolute;
+  right: 0;
+  margin-top: 0rpx;
 }
 .imagetitle{
   display: flex;
   align-items: center;
+  position: relative;
 }
 .loading-container-flex {
   display: flex;

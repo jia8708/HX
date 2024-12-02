@@ -3,14 +3,21 @@ const base64ArrayBuffer = require('base64-arraybuffer');
 const app = getApp();
 Component({
   data: {
-    imageFiles: [],
-    docFiles:[],
+    file4: [],
+    file3:[],
+    file2:[],
+    file1:[],
     allitem:[],
-    fileitem:[],
-    imageitem:[],
-    imagesrc:[],
-    teamID:'',
-    showdel:false,
+    item1:[],
+    item2:[],
+    item3:[],
+    item4:[],
+    imagesrc4:[],
+    imagesrc1:[],
+    imagesrc2:[],
+    showdel1:false,
+    showdel2:false,
+    showdel4:false,
     loading:false,
     gridConfig: {
       column: 4,
@@ -22,10 +29,22 @@ Component({
     },
   },
   methods: {
-    showDel(){
-      const flag = this.data.showdel
+    showDel1(){
+      const flag = this.data.showdel1
       this.setData({
-        showdel:!flag
+        showdel1:!flag
+      })
+    },
+    showDel2(){
+      const flag = this.data.showdel2
+      this.setData({
+        showdel2:!flag
+      })
+    },
+    showDel4(){
+      const flag = this.data.showdel4
+      this.setData({
+        showdel4:!flag
       })
     },
     showSuccessToast() {
@@ -37,56 +56,64 @@ Component({
         direction: 'column',
       });
     },
-    showErrorToast() {
+    showLoading() {
       Toast({
         context: this,
         selector: '#t-toast',
-        message: '提交失败',
-        theme: 'error',
+        message: '开始上传文件',
+        theme: 'loading',
         direction: 'column',
       });
     },
-    getTeamid(){
-      wx.getStorage({
-        key: 'openid',
-        success: function (res) {
-          const openID = res.data
-          if (app.globalData.stuNo) {
-            const url = 'hxapi/api/Team/MyTeamInfo'
-            const query = {
-              openID: openID
-            }
-            util.ReqSend(url, query).then((res) => {
-              console.log(res)
-              this.setData({
-                teamID:JSON.parse(res.data)
-              })
-              console.log(data)
-            })
-          }
-        },
-        fail:(res)=>{
-          console.log('获取失败',res)
-        }
-      })
-    },
     handleSuccess(e) {
       const { files } = e.detail;
-      console.log(files)
-      this.setData({
-        imageFiles: files,
-      });
+      const fileType = parseInt(e.currentTarget.dataset.type);
+      switch(fileType){
+        case 1:
+          this.setData({
+            file1: files,
+          });
+          break;
+        case 2:
+          this.setData({
+            file2: files,
+          });
+          break;
+        case 4:
+          this.setData({
+            file4: files,
+          });
+          break;
+      }
+      
     },
     handleRemove(e) {
       const { index } = e.detail;
-      const { imageFiles } = this.data;
-      imageFiles.splice(index, 1);
-      this.setData({
-        imageFiles,
-      });
-    },
-    handleClick(e) {
-      console.log(e.detail.file);
+      const fileType = parseInt(e.currentTarget.dataset.type);
+      switch(fileType){
+        case 1:
+          const { file1 } = this.data;
+          file1.splice(index, 1);
+          this.setData({
+            file1,
+          });
+          break;
+        case 2:
+          const { file2 } = this.data;
+          file2.splice(index, 1);
+          this.setData({
+            file2,
+          });
+          break;
+        case 4:
+          const { file4 } = this.data;
+          file4.splice(index, 1);
+          this.setData({
+            file4,
+          });
+          break;
+      }
+      
     },
     choosefile(){
       wx.chooseMessageFile({
@@ -96,7 +123,7 @@ Component({
           const tempFilePath = res.tempFiles.map(item=>item.path);
           console.log(tempFilePath,"tempFilePath")
           this.setData({
-            docFiles:tempFilePath
+            file3:tempFilePath
           })
         }
       })
@@ -104,7 +131,6 @@ Component({
     fetchfile() {
       return new Promise((resolve, reject) => {
         let that = this;
-        const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff'];
         wx.request({
           url: app.baseUrl + '/FileUpload/StuFileList',
           method: 'POST',
@@ -124,18 +150,26 @@ Component({
               allitem: res.data.data
             });
             that.setData({
-              fileitem: that.data.allitem.filter(file => {
-                const extension = file.filePath.split('.').pop().toLowerCase();
-                return !imageExtensions.includes(extension);
+              item3: that.data.allitem.filter(file => {
+                return file.fileType === 3;
               })
             });
             that.setData({
-              imageitem: that.data.allitem.filter(file => {
-                const extension = file.filePath.split('.').pop().toLowerCase();
-                return imageExtensions.includes(extension);
+              item4: that.data.allitem.filter(file => {
+                return file.fileType === 4;
               })
             });
-            console.log(that.data.fileitem, that.data.imageitem);
+            that.setData({
+              item1: that.data.allitem.filter(file => {
+                return file.fileType === 1;
+              })
+            });
+            that.setData({
+              item2: that.data.allitem.filter(file => {
+                return file.fileType === 2;
+              })
+            });
+            console.log(that.data.item1, that.data.item2,that.data.item3, that.data.item4);
             resolve();
           },
           fail: function(err) {
@@ -145,14 +179,14 @@ Component({
         });
       });
     },
-    downloadItems() {
+    //fileType:4,imagesrcs:that.data.imagesrc4,items:that.data.item4
+    downloadItem(fileType,imagesrcs,items){
       let that = this;
-      let existingImages = this.data.imagesrc.map(item => item.name); // 获取已下载图片的名称
-      let newImageItems = this.data.imageitem.filter(item => {
+      let existingImages = imagesrcs.map(item => item.name); // 获取已下载图片的名称
+      let newImageItems = items.filter(item => {
         const name = item.filePath.substring(item.filePath.lastIndexOf('/') + 1);
         return !existingImages.includes(name); // 检查图片是否已经下载过
       });
-    
       if (newImageItems.length > 0) {
         that.setData({
           loading:true
@@ -173,7 +207,8 @@ Component({
                 console.log(res, '图片下载');
                 resolve({
                   name: name,
-                  url: url
+                  url: url,
+                  fileType:fileType
                 });
               },
               fail: function(err) {
@@ -184,11 +219,26 @@ Component({
           });
         });
         Promise.all(promises).then(results => {
-          let updatedImageSrc = that.data.imagesrc.concat(results);
-          that.setData({
-            imagesrc: updatedImageSrc
-          });
-          console.log(that.data.imagesrc);
+          let updatedImageSrc = imagesrcs.concat(results);
+          const fileType = updatedImageSrc[0].fileType
+          switch(fileType){
+            case 1:
+              that.setData({
+                imagesrc1: updatedImageSrc
+              });
+              break;
+              case 2:
+                that.setData({
+                  imagesrc2: updatedImageSrc
+                });
+                break;
+              case 4:
+                that.setData({
+                    imagesrc4: updatedImageSrc
+                  });
+                break;
+
+          }
           that.setData({
             loading:false
           })
@@ -198,6 +248,11 @@ Component({
       } else {
         console.log('所有图片已下载，不再重复下载');
       }
+    },
+    downloadItems() {
+      this.downloadItem(1,this.data.imagesrc1,this.data.item1)
+      this.downloadItem(2,this.data.imagesrc2,this.data.item2)
+      this.downloadItem(4,this.data.imagesrc4,this.data.item4)
     },
     onTabsClick(event) {
       let that = this
@@ -211,17 +266,16 @@ Component({
           });
       }
     },
-    delFunc(e){
+    //e,fileType:4,items:this.data.item4,imagesrcs:this.data.imagesrc4
+    delItem(e,fileType,items,imagesrcs){
+      let index;
       let that = this;
-      let index, fileurl;
-      const type = e.currentTarget.dataset.type; 
-      if(type === "file"){
+      if(fileType === 3) 
         index = 0;
-        fileurl = this.data.fileitem[index].filePath;
-      }else{
+      else{
         index = e.currentTarget.dataset.index;
-        fileurl = this.data.imageitem[index].filePath;
       }
+      const fileurl = items[index].filePath;
       wx.request({
         url: app.baseUrl + '/FileUpload/StuFileDelete',
         method: 'POST',
@@ -238,18 +292,50 @@ Component({
         success: function(res) {
           console.log("删除成功",res);
           that.fetchfile();
-          let indexToDelete = that.data.imagesrc.findIndex(item => item.name === fileurl.substring(fileurl.lastIndexOf('/') + 1));
+          let indexToDelete = imagesrcs.findIndex(item => item.name === fileurl.substring(fileurl.lastIndexOf('/') + 1));
           if (indexToDelete !== -1) {
-            let updatedImageSrc = that.data.imagesrc.filter((item, index) => index !== indexToDelete);
-            that.setData({
-            imagesrc: updatedImageSrc
-          });
+            let updatedImageSrc = imagesrcs.filter((item, index) => index !== indexToDelete);
+            switch(fileType){
+              case 1:
+                that.setData({
+                  imagesrc1: updatedImageSrc
+                });
+                break;
+              case 2:
+                that.setData({
+                  imagesrc2: updatedImageSrc
+                });
+                break;
+              case 4:
+                that.setData({
+                  imagesrc4: updatedImageSrc
+                });
+                break;
+            }
         }
+        
         },
         fail: function(err) {
           console.error(err);
         }
       });
+    },
+    delFunc(e){
+      const fileType = parseInt(e.currentTarget.dataset.type);
+      switch(fileType){
+        case 1:
+          this.delItem(e,1,this.data.item1,this.data.imagesrc1);
+          break;
+        case 2:
+          this.delItem(e,2,this.data.item2,this.data.imagesrc2);
+          break;
+        case 3:
+          this.delItem(e,3,this.data.item3,[]);
+          break;
+        case 4:
+          this.delItem(e,4,this.data.item4,this.data.imagesrc4);
+          break;
+      }
     },
     uploadFilePromise(options) {
       return new Promise((resolve, reject) => {
@@ -267,15 +353,16 @@ Component({
       });
       
     }, 
-    uploadImages(imageFiles) {
+    uploadImages(files,fileType) {
       let that = this;
-      if (imageFiles.length > 0) {
-        const uploadPromises = imageFiles.map(file => that.uploadFilePromise({
+      if (files.length > 0) {
+        const uploadPromises = files.map(file => that.uploadFilePromise({
           url: app.baseUrl + '/FileUpload/UploadFile',
           filePath: file.url,
           name: 'file',
           formData: {
-            stuNo: app.globalData.stuNo
+            stuNo: app.globalData.stuNo,
+            fileType:fileType
           },
           header: {
             'Authorization': 'Bearer ' + app.globalData.token
@@ -285,15 +372,16 @@ Component({
       }
       return Promise.resolve();
     },
-    uploadDocument(docFiles) {
-      if(docFiles.length>0){
-        console.log(docFiles[0])
+    uploadDocument(files) {
+      if(files.length>0){
+        console.log(files[files.length-1])
         return this.uploadFilePromise({
           url: app.baseUrl + '/FileUpload/UploadFile',
-          filePath: docFiles[0],
+          filePath: files[files.length-1],
           name: 'file',
           formData: {
-            stuNo: app.globalData.stuNo
+            stuNo: app.globalData.stuNo,
+            fileType:"3"
           },
           header: {
             'Authorization': 'Bearer ' + app.globalData.token
@@ -304,16 +392,26 @@ Component({
     },
     handleUpload() {
       let that = this;
-      that.uploadImages(this.data.imageFiles)
+      this.showLoading();
+      
+      that.uploadImages(this.data.file4,'4')
+        .then(()=>{
+          return that.uploadImages(this.data.file1,'1')
+        })
+        .then(()=>{
+          return that.uploadImages(this.data.file2,'2')
+        })
         .then(() => {
-          return that.uploadDocument(this.data.docFiles);
+          return that.uploadDocument(this.data.file3);
         })
         .then(() => {
           console.log('所有文件上传成功');
           that.showSuccessToast();
           that.setData({
-            imageFiles:[],
-            docFiles:[]
+            file4:[],
+            file3:[],
+            file1:[],
+            file2:[]
           })
         })
         .catch(error => {
