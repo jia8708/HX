@@ -39,6 +39,10 @@
       </picker>
 
     </view>
+    <view class="row-register">
+      <view class="title ">审核情况:</view>
+      <view class="input teamtitle">{{teaminfo.isChecked}}</view>
+    </view>
 
   </view>
 

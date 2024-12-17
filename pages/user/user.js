@@ -142,6 +142,23 @@ Page({
           }
         }
       })
+    }else if(!app.globalData.myteam){
+      wx.showModal({
+        title: '尚未加入队伍',
+        content: '请先前往我的团队加入队伍',
+        confirmText: '立即加入',
+        confirmColor: '#7b85fe',
+        cancelText: '暂不加入',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: "../team/new/new"
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
     }else{
       wx.navigateTo({
         url: '/pages/team/upload/upload',
@@ -199,8 +216,29 @@ Page({
         })
       }
     })
+
     this.setData({
       userInfo:app.globalData.userInfo
+    })
+
+    wx.getStorage({
+      key: 'openid',
+      success: function (res) {
+        const openID = res.data
+        const url = 'hxapi/api/Team/MyTeamInfo'
+          const query = {
+            openID: openID
+          }
+          util.ReqSend(url, query).then((res) => {
+            console.log(res)
+            const data = JSON.parse(res.data)
+            console.log(res.statusCode === 200)
+            if (res.statusCode === 200) {
+              app.globalData.myteam = data.TeamID
+            }
+           
+          })
+      }
     })
   },
 

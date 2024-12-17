@@ -362,7 +362,8 @@ Component({
           name: 'file',
           formData: {
             stuNo: app.globalData.stuNo,
-            fileType:fileType
+            fileType:fileType,
+            teamID:app.globalData.myteam
           },
           header: {
             'Authorization': 'Bearer ' + app.globalData.token
@@ -381,7 +382,8 @@ Component({
           name: 'file',
           formData: {
             stuNo: app.globalData.stuNo,
-            fileType:"3"
+            fileType:"3",
+            teamID:app.globalData.myteam
           },
           header: {
             'Authorization': 'Bearer ' + app.globalData.token
